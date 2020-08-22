@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Learn Words</title>
+    <meta name="description" content="Learn Word" />
+    <meta name="keywords" content="english, turkish, word, learn" />
+    <!-- messages meta -->
+    {% for message in messages %}
+    <meta name="message" data-tag="{{message.tags}}" content="{{ message }}">
+    {% endfor %}
+    <!-- semantic -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!-- toastr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    />
+    <!-- custome js -->
+    <script src="{% static 'wordapp/custom.js' %}"></script>
+    <!-- csshake -->
+    <link rel="stylesheet" type="text/css" href="https://csshake.surge.sh/csshake.min.css">
+  </head>
+  <body>
+    <div class="">
+      {% if user.is_authenticated %}
+        <div class="ui bottom attached warning message">
+          <i class="icon help"></i>
+          <a href="{% url 'logout' %}">Logout</a>
+        </div>
+      {% endif %}
+      {% block content %}
+      {% include 'include/__form.html' %}
+      {% endblock content %}
+    </div>
+  </body>
+</html>

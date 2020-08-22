@@ -1,0 +1,47 @@
+<!-- {% comment %}
+        {% include 'analyst/include/__form.html' with form_url_name='' form_id="formId" method="post" form=form'
+        %}
+    {% endcomment %}
+ -->
+{% with button_id=form_id|add:'Button'|default:'formSubmitButton'  %}
+<form {% if url_name %}action="{% url form_url_name %}" {% endif %}method="{{ method|default:'POST' }}" id="{{ form_id|default:'formSubmitButton' }}"
+class="ui form">
+    {{ form.media }}
+    {% if method|lower != "get" %}
+    {% csrf_token %}
+    {% endif %}
+    {{ form.non_field_errors }}
+    {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field.errors }}
+    {{ hidden_field }}
+    {% endfor %}
+    {% for field in form.visible_fields %}
+    <div class="field" id="group_{{ field.html_name }}">
+        {% if field.errors %}
+        <ol>
+            {% for error in field.errors %}
+            <li><strong>{{ error|escape }}</strong></li>
+            {% endfor %}
+        </ol>
+        {% endif %}
+        {{ field.label_tag }}
+        {% if field.field.widget.input_type == 'checkbox' %}
+        <div class="ui toggle checkbox">
+            <input {% if field.field.widget.is_required %} required {% endif %} {% if field.value %}checked{% endif %}
+                type="checkbox" name="{{ field.html_name }}" class="custom-control-input" id="{{ field.id_for_label }}">
+            <label class="custom-control-label"
+                for="{{ field.id_for_label }}">{{ field.verbose_name|default:'' }}</label>
+        </div>
+        {% else %}
+        {{ field }}
+        {% endif %}
+        <small id="{{ field.id_for_label }}Help" class="form-text text-muted">{{ field.help_text|safe }}</small>
+    </div>
+    {% endfor %}
+    <button id="{{button_id}}" type="submit" class="ui button">
+        Submit
+    </button>
+</form>
+ {% endwith %}
+
+
