@@ -29,7 +29,7 @@ ADMINS = [("Hakan Çelik", "hakancelikspam@outlook.com")]
 
 INTERNAL_IPS = ["127.0.0.1"]
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     "apps.middleware.RedirectAnonymousUser",
 ]
 
-ROOT_URLCONF = "learnword.urls"
+ROOT_URLCONF = "eatingword.urls"
 
 TEMPLATES = [
     {
@@ -75,7 +75,7 @@ TEMPLATES = [
         },
     },
 ]
-WSGI_APPLICATION = "learnword.wsgi.application"
+WSGI_APPLICATION = "eatingword.wsgi.application"
 
 
 # Database
