@@ -26,26 +26,25 @@ document.addEventListener(
       eval(`toastr.${tagName}`)(content);
     }
     /* forms validation check */
-    $("button[type=submit]").click(function () {
-      let form = this.form;
-      console.log(form);
-      let formIsValid = form.checkValidity();
-      if (formIsValid) {
-        this.setAttribute("disabled", "");
-        this.innerHTML = "";
-        $(this).prepend(
-          `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...`
-        );
-        form.submit();
-      } else {
-        $(form).addClass("shake-horizontal");
-        setTimeout(function () {
-          $(form).removeClass("shake-horizontal");
-        }, 400);
-        toastr.warning("Form is not valid");
-        this.removeAttribute("disabled");
-      }
-    });
+    document
+      .querySelector("button[type=submit]")
+      .addEventListener("click", function () {
+        let form = this.form;
+        let formIsValid = form.checkValidity();
+        if (formIsValid) {
+          this.innerText = "Loading ... ";
+          this.setAttribute("uk-spinner", "");
+          this.setAttribute("disabled", "");
+          form.submit();
+        } else {
+          form.setAttribute("class", "shake-horizontal");
+          setTimeout(function () {
+            form.removeAttribute("class", "shake-horizontal");
+          }, 400);
+          toastr.warning("Form is not valid");
+          this.removeAttribute("disabled");
+        }
+      });
   },
   false
 );

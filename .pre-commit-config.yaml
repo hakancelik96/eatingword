@@ -28,6 +28,7 @@ repos:
     rev: v0.782
     hooks:
       - id: mypy
+        exclude: "migrations"
 
   - repo: https://github.com/prettier/prettier
     rev: 2.0.5

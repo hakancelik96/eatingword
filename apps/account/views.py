@@ -1,10 +1,10 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import LoginView
+from django.contrib.auth import views as auth_views
 from django.urls import reverse_lazy
 from django.views import generic
 
-from apps.account.forms import RegisterForm
+from apps.account.forms import AuthenticationForm, RegisterForm
 from apps.views import MessageMixin
 
 
@@ -27,5 +27,6 @@ class RegisterView(MessageMixin, generic.CreateView):
         return response
 
 
-class LoginView(MessageMixin, LoginView):
+class LoginView(MessageMixin, auth_views.LoginView):
+    form_class = AuthenticationForm
     success_message = "You have successfully logged in %(username)s"
