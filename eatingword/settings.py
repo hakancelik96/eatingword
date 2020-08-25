@@ -127,9 +127,7 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = "static"
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-# ]
+STATICFILES_DIRS = [BASE_DIR / "apps" / "static"]
 AUTH_USER_MODEL = "account.User"
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "login"

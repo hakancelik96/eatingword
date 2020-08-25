@@ -31,6 +31,8 @@ class UikitFormMixin:
                 "password": "lock",
                 "password1": "lock",
                 "password2": "lock",
+                "source": "arrow-right",
+                "target": "pencil",
             }
             widget.uk_icon = uk_icons.get(field_name, None)
             widget.label_classes = ("uk-form-label",)

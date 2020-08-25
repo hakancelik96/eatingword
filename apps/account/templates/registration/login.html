@@ -1,9 +1,18 @@
 {% extends "base.html" %}
+
+{% block title %}
+	Login
+{% endblock title %}
+
 {% block content %}
-{% include 'include/__form.html' %}
-<br/>
-<div class="ui bottom attached warning message">
-  <i class="icon help"></i>
-  Do not have an account?<a href="{% url 'register' %}">Register Now</a>
-</div>
+	{% include 'include/__form.html' %}
 {% endblock content %}
+
+{% block footer %}
+	<div class="ui bottom attached warning message">
+  		<i class="icon help"></i>
+  		Do not have an account?
+  		<a href="{% url 'register' %}">Register Now</a>
+	</div>
+{% endblock footer %}
+

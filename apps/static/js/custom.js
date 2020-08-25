@@ -30,18 +30,19 @@ document.addEventListener(
       .querySelector("button[type=submit]")
       .addEventListener("click", function () {
         let form = this.form;
-        let formIsValid = form.checkValidity();
-        if (formIsValid) {
+        if (form.checkValidity()) {
+          this.setAttribute("disabled", "");
           this.innerText = "Loading ... ";
           this.setAttribute("uk-spinner", "");
-          this.setAttribute("disabled", "");
           form.submit();
         } else {
-          form.setAttribute("class", "shake-horizontal");
+          this.toggleAttribute("disabled");
+          let currentClasses = form.getAttribute("class");
+          form.setAttribute("class", `${currentClasses} uk-animation-shake`);
           setTimeout(function () {
-            form.removeAttribute("class", "shake-horizontal");
+            form.setAttribute("class", currentClasses);
           }, 400);
-          toastr.warning("Form is not valid");
+          toastr.warning("Form Is Not Valid");
           this.removeAttribute("disabled");
         }
       });

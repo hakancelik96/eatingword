@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="uk-card">
+	    <div class="uk-card-header">
+	        <h3 class="uk-card-title">@{{ user.username }}</h3>
+	    </div>
+	    <div class="uk-card-body">
+	      <span class="uk-label uk-label-success">
+	    		Known Words; {{ user.known_words.count }}
+	    	</span>
+	    	<span class="uk-label uk-label-danger">
+	    		Unknown Words; {{ user.unknown_words.count }}
+	    	</span>
+	    </div>
+	</div>
+	{% include 'include/__form.html' %}
+{% endblock content %}
+
+

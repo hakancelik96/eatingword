@@ -8,7 +8,7 @@ from apps.wordapp.models import Translate
 
 
 class IndexView(generic.FormView):
-    template_name = "base.html"
+    template_name = "index.html"
     form_class = UserTranslateForm
 
     def form_valid(self, form):
