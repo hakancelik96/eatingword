@@ -17,22 +17,25 @@ class Command(BaseCommand):
         ).open()
         for word in english_words.readlines():
             with suppress(IntegrityError):
-                en_word, __ = Word.objects.get_or_create(
+                en_word, en_created = Word.objects.get_or_create(
                     word=self.clean_word(word), language="en"
                 )
-                tr_word, __ = Word.objects.get_or_create(
-                    word=Translator()
-                    .translate(self.clean_word(word), "tr")
-                    .text.lower(),
-                    language="tr",
-                )
-                translate, created = Translate.objects.get_or_create(
-                    source=en_word, target=tr_word
-                )
-                if created:
-                    self.stdout.write(
-                        self.style.SUCCESS(f"Successfully created {translate}")
+                if en_created:
+                    tr_word, __ = Word.objects.get_or_create(
+                        word=Translator()
+                        .translate(self.clean_word(word), "tr")
+                        .text.lower(),
+                        language="tr",
                     )
+                    translate, created = Translate.objects.get_or_create(
+                        source=en_word, target=tr_word
+                    )
+                    if created:
+                        self.stdout.write(
+                            self.style.SUCCESS(
+                                f"Successfully created {translate}"
+                            )
+                        )
 
     @staticmethod
     def clean_word(word):

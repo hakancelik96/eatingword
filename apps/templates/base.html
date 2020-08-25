@@ -40,7 +40,9 @@
           </div>
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
-               <li class="uk-active"><a href="{% url 'logout' %}">Logout</a></li>
+               {% if user.is_authenticated %}
+                  <li class="uk-active"><a href="{% url 'logout' %}">Logout</a></li>
+               {% endif %}
             </ul>
          </div>
       </nav>

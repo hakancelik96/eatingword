@@ -27,13 +27,11 @@
         </label>
         <div class="uk-inline">
             {% if field.field.widget.uk_icon %}
-            <span class="uk-form-icon" uk-icon="{{ field.field.widget.uk_icon }}"></span>
+                <span class="uk-form-icon" uk-icon="{{ field.field.widget.uk_icon }}"></span>
             {% endif %}
             {{ field }}
         </div>
-        <small id="{{ field.id_for_label }}Help" class="">
-            {{ field.help_text|safe }}
-        </small>
+        <small class="uk-text-meta uk-text-background" id="{{ field.id_for_label }}Help">{{ field.help_text|safe }}</small>
     </div>
     {% endfor %}
     <button id="{{button_id}}" type="submit" class="uk-button uk-button-primary">
