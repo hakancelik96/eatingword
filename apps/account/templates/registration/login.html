@@ -5,7 +5,7 @@
 {% endblock title %}
 
 {% block content %}
-	{% include 'include/__form.html' %}
+	{% include 'include/__form.html' with buttonText="Login" %}
 {% endblock content %}
 
 {% block footer %}
@@ -15,4 +15,3 @@
   		<a href="{% url 'register' %}">Register Now</a>
 	</div>
 {% endblock footer %}
-

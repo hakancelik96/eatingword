@@ -14,6 +14,7 @@ class Word(AbstractTimeModel):
 
     class Meta:
         unique_together = ["word"]
+        ordering = ["created_at"]
 
     def __str__(self):
         return f"{self.language} | {self.word}"

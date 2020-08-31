@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     # project's apps
     "apps.account",
     "apps.wordapp",
+    "apps.restapi",
+    # 3. party
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,9 @@ STATICFILES_DIRS = [BASE_DIR / "apps" / "static"]
 AUTH_USER_MODEL = "account.User"
 LOGIN_REDIRECT_URL = "index"
 LOGOUT_REDIRECT_URL = "login"
+
+# rest api configuration
+REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 10,
+}

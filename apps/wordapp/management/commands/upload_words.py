@@ -13,7 +13,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         english_words = Path(
-            "apps/wordapp/management/commands/words/english.txt"
+            "apps/wordapp/management/commands/words/3k-english.txt"
         ).open()
         for word in english_words.readlines():
             with suppress(IntegrityError):

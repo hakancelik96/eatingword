@@ -35,7 +35,7 @@
     </div>
     {% endfor %}
     <button id="{{button_id}}" type="submit" class="uk-button uk-button-primary">
-        Submit
+        {{ buttonText|default:"Submit" }}
     </button>
 </form>
  {% endwith %}
