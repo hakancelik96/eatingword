@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import permissions, viewsets
+from rest_framework.throttling import UserRateThrottle
 
 from apps.restapi.serializers import (
     TranslateSerializer,
@@ -19,6 +20,7 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = UserModel.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    throttle_classes = (UserRateThrottle,)
 
 
 class WordViewSet(viewsets.ModelViewSet):
@@ -29,6 +31,7 @@ class WordViewSet(viewsets.ModelViewSet):
     queryset = Word.objects.all()
     serializer_class = WordSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    throttle_classes = (UserRateThrottle,)
 
 
 class TranslateViewSet(viewsets.ModelViewSet):
@@ -39,3 +42,4 @@ class TranslateViewSet(viewsets.ModelViewSet):
     queryset = Translate.objects.all()
     serializer_class = TranslateSerializer
     permission_classes = (permissions.IsAuthenticated,)
+    throttle_classes = (UserRateThrottle,)

@@ -10,7 +10,7 @@ from apps.views import MessageMixin
 
 class RegisterView(MessageMixin, generic.CreateView):
     template_name = "registration/register.html"
-    success_url = reverse_lazy("index")
+    success_url = reverse_lazy("wordapp:index")
     form_class = RegisterForm
     success_message = "You have successfully registered %(username)s"
 

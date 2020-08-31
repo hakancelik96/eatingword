@@ -132,11 +132,16 @@ STATIC_URL = "/static/"
 STATIC_ROOT = "static"
 STATICFILES_DIRS = [BASE_DIR / "apps" / "static"]
 AUTH_USER_MODEL = "account.User"
-LOGIN_REDIRECT_URL = "index"
-LOGOUT_REDIRECT_URL = "login"
+LOGIN_REDIRECT_URL = "wordapp:index"
+LOGOUT_REDIRECT_URL = "account:login"
 
 # rest api configuration
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {"anon": "0/day", "user": "1000/day"},
 }
