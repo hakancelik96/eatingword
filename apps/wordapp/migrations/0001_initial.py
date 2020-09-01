@@ -33,7 +33,9 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"unique_together": {("word",)},},
+            options={
+                "unique_together": {("word",)},
+            },
         ),
         migrations.CreateModel(
             name="Translate",
@@ -66,6 +68,8 @@ class Migration(migrations.Migration):
                     ),
                 ),
             ],
-            options={"unique_together": {("source", "target")},},
+            options={
+                "unique_together": {("source", "target")},
+            },
         ),
     ]
