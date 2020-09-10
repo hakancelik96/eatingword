@@ -16,11 +16,11 @@ class RegisterView(MessageMixin, generic.CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        if user := authenticate(
-            self.request,
-            username=self.object.username,
-            password=self.object.password,
-        ):
+        user = authenticate(
+            username=form.cleaned_data["username"],
+            password=form.cleaned_data["password1"],
+        )
+        if user is not None:
             login(self.request, user)
         else:
             messages.error(self.request, "Could not login")

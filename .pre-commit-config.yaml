@@ -5,6 +5,7 @@ repos:
       - id: unimport
         args: [-r]
         files: "\\.(py)$"
+        exclude: "__init__.py"
 
   - repo: https://github.com/myint/docformatter
     rev: v1.3.1

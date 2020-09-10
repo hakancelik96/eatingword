@@ -1,7 +1,7 @@
 **Learn word any language with a basic way**
 
 ![pre-commit](https://github.com/hakancelik96/eatingword/workflows/pre-commit/badge.svg)
-![Test](https://github.com/hakancelik96/eatingword/workflows/Test/badge.svg)
+![test](https://github.com/hakancelik96/eatingword/workflows/test/badge.svg)
 
 [![Forks](https://img.shields.io/github/forks/hakancelik96/eatingword)](https://github.com/hakancelik96/eatingword/fork)
 [![Issues](https://img.shields.io/github/issues/hakancelik96/eatingword)](https://github.com/hakancelik96/eatingword/issues)
