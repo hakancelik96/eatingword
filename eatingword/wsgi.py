@@ -1,5 +1,4 @@
-"""
-WSGI config for eatingword project.
+"""WSGI config for eatingword project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

@@ -13,9 +13,7 @@ UserModel = get_user_model()
 
 
 class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
+    """API endpoint that allows users to be viewed or edited."""
 
     queryset = UserModel.objects.all().order_by("-date_joined")
     serializer_class = UserSerializer
@@ -24,9 +22,7 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 class WordViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows words to be viewed or edited.
-    """
+    """API endpoint that allows words to be viewed or edited."""
 
     queryset = Word.objects.all()
     serializer_class = WordSerializer
@@ -35,9 +31,7 @@ class WordViewSet(viewsets.ModelViewSet):
 
 
 class TranslateViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows translate to be viewed or edited.
-    """
+    """API endpoint that allows translate to be viewed or edited."""
 
     queryset = Translate.objects.all()
     serializer_class = TranslateSerializer
