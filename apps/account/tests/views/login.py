@@ -5,13 +5,19 @@ UserModel = get_user_model()
 
 
 class LoginTest(TestCase):
-    credentials = {"username": "testuser", "password": "test.password"}
+    @classmethod
+    def setUpTestData(cls):
+        cls.username = "testuser"
+        cls.credentials = {
+            "username": cls.username,
+            "password": "test.password",
+        }
 
     def setUp(self):
-        UserModel.objects.create_user(**credentials)
+        UserModel.objects.create_user(**self.credentials)
 
     def test_login(self):
-        response = self.client.login(**credentials)
+        response = self.client.login(**self.credentials)
         self.assertTrue(response)
 
     def test_not_login(self):
