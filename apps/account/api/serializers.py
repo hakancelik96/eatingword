@@ -5,13 +5,15 @@ UserModel = get_user_model()
 
 
 class UserSerializer(serializers.ModelSerializer):
-    known_words = serializers.StringRelatedField(many=True)
-    unknown_words = serializers.StringRelatedField(many=True)
+    known_words = serializers.StringRelatedField(many=True, required=False)
+    unknown_words = serializers.StringRelatedField(many=True, required=False)
 
     class Meta:
         model = UserModel
         fields = [
             "username",
+            "password",
+            "email",
             "known_words",
             "unknown_words",
             "date_joined",

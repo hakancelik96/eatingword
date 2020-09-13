@@ -9,11 +9,11 @@ urlpatterns = [
     path("account/", include("apps.account.urls")),
     # API
     path(
-        "api/v1/account/",
+        "api/v1/",
         include("apps.account.api.urls"),
     ),
     path(
-        "api/v1/word/",
+        "api/v1/",
         include("apps.wordapp.api.urls"),
     ),
     # openapi-schema

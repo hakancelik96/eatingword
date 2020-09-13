@@ -10,9 +10,6 @@ class WordSerializer(serializers.ModelSerializer):
 
 
 class TranslateSerializer(serializers.ModelSerializer):
-    source = serializers.SlugRelatedField(read_only=True, slug_field="word")
-    target = serializers.SlugRelatedField(read_only=True, slug_field="word")
-
     class Meta:
         model = Translate
         fields = ["id", "source", "target", "created_at", "updated_at"]
