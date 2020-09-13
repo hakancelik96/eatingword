@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     # project's apps
     "apps.account",
     "apps.wordapp",
-    "apps.restapi",
     # 3. party
     "rest_framework",
 ]
@@ -145,4 +144,5 @@ REST_FRAMEWORK = {
         "rest_framework.throttling.UserRateThrottle",
     ],
     "DEFAULT_THROTTLE_RATES": {"anon": "0/day", "user": "1000/day"},
+    # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning'
 }
