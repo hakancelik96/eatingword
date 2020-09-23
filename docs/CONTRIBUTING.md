@@ -19,6 +19,29 @@ look.**
 ```shell
 $ git clone git@github.com:<USERNAME>/eatingword.git
 $ cd eatingword
+$ python3.8 -m venv env
+$ source env/bin/activate
+$ python -m pip install requirements.txt
+$ python -m pip install requirements-dev.txt
+$ sudo apt install postgresql postgresql-contrib
+$ sudo service postgresql start
+$ sudo -u postgres psql
+$ CREATE DATABASE eatingword;
+$ CREATE USER projectuser WITH PASSWORD 'password';
+$ ALTER ROLE projectuser SET client_encoding TO 'utf8';
+$ ALTER ROLE projectuser SET default_transaction_isolation TO 'read committed';
+$ ALTER ROLE projectuser SET timezone TO 'UTC';
+$ GRANT ALL PRIVILEGES ON DATABASE eatingword TO projectuser;
+```
+
+Create a file called `.env`
+
+```
+DEBUG=on
+SECRET_KEY=key
+DATABASE_URL=postgresql://projectuser:password@127.0.0.1:5432/eatingword
+ALLOWED_HOSTS=*
+INTERNAL_IPS=127.0.0.1
 ```
 
 ## Setup Branch
@@ -30,8 +53,6 @@ git checkout -b i{your issue number}
 ## Install pre-commit hooks
 
 ```shell
-$ pip3 install --upgrade pip # optional, if you have an old system version of pip
-$ pip3 install pre-commit
 $ pre-commit install # to pre-commit will run automatically on git commit!
 ```
 
@@ -39,7 +60,7 @@ $ pre-commit install # to pre-commit will run automatically on git commit!
 
 ```shell
 $ git remote add upstream git@github.com:hakancelik96/eatingword.git
-$ git fetch upstream # or git fetch --all
+$ git fetch upstream
 $ git rebase upstream/master
 ```
 
@@ -49,6 +70,12 @@ After typing your codes, you should run the tests by typing the following comman
 
 ```shell
 $ tox
+```
+
+or
+
+```shell
+$ python manage.py test apps
 ```
 
 If all tests pass.
