@@ -12,7 +12,14 @@ from pathlib import Path
 
 import environ
 
-env = environ.Env(DEBUG=(bool, False))
+env = environ.Env(
+    DEBUG=(bool, False),
+    SECRET_KEY=(str, "SECRET_KEY"),
+    INTERNAL_IPS=(list, ["127.0.0.1"]),
+    ALLOWED_HOSTS=(list, ["*"]),
+    DATABASE_URL=(str, "sqlite:////eatingword.db"),
+    CELERY_BROKER_URL=(str, "redis://localhost:6379"),
+)
 # reading .env file
 environ.Env.read_env()
 
@@ -34,7 +41,6 @@ ADMINS = [("Hakan Çelik", "hakancelikspam@outlook.com")]
 INTERNAL_IPS = env.list("INTERNAL_IPS")
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
-
 
 # Application definition
 
@@ -143,3 +149,12 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_RATES": {"anon": "0/day", "user": "1000/day"},
     # 'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning'
 }
+
+
+# CELERY
+
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"

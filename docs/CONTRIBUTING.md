@@ -23,7 +23,7 @@ $ python3.8 -m venv env
 $ source env/bin/activate
 $ python -m pip install requirements.txt
 $ python -m pip install requirements-dev.txt
-$ sudo apt install postgresql postgresql-contrib
+$ sudo apt install postgresql postgresql-contrib python-celery-common
 $ sudo service postgresql start
 $ sudo -u postgres psql
 $ CREATE DATABASE eatingword;
@@ -34,14 +34,27 @@ $ ALTER ROLE projectuser SET timezone TO 'UTC';
 $ GRANT ALL PRIVILEGES ON DATABASE eatingword TO projectuser;
 ```
 
+Run redis-server
+
+```shell
+$ redis-server
+```
+
 Create a file called `.env`
 
-```
+```shell
 DEBUG=on
 SECRET_KEY=key
 DATABASE_URL=postgresql://projectuser:password@127.0.0.1:5432/eatingword
 ALLOWED_HOSTS=*
 INTERNAL_IPS=127.0.0.1
+CELERY_BROKER_URL=redis://localhost:6379
+```
+
+Run celery
+
+```shell
+$ celery -A eatingword worker -l info
 ```
 
 ## Setup Branch
