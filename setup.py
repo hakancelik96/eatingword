@@ -20,7 +20,7 @@ setup(
     install_requires=[
         "django==3.1",
         "googletrans==3.0.0",
-        "djangorestframework==3.11.1",
+        "djangorestframework==3.11.2",
     ],
     # extras_require={},
     zip_safe=False,
