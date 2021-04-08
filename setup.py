@@ -18,7 +18,7 @@ setup(
     python_requires=">=3.8.0",
     # packages=[],
     install_requires=[
-        "django==3.1",
+        "django==3.1.8",
         "googletrans==3.0.0",
         "djangorestframework==3.11.1",
     ],
